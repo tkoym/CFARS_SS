@@ -38,3 +38,12 @@ please follow the following steps to run the script. YouTube Video --> https://y
 
 
     
+#### To test
+`python CFARS_SS_Phase1_Analysis.py testdata/testdata.xlsx testdata/testconfig.xlsx output.xlsx`
+
+#### Building windows executable
+Install requirements_dev to get pyinstaller and its dependencies
+`pip install -r requirements_dev.txt`
+
+Run pyinstaller with onedir.spec to create exe in dist/modulename
+`pyinstaller --clean onedir.spec`
