@@ -1,12 +1,13 @@
 # -*- mode: python -*-
-"""This PyInstaller spec file will create a "one dir" executable.
-A folder containing the exe and all supporting files will be
-created inside the dist directory.
+
+"""This PyInstaller spec file will create a "one file" executable.
+A single exe with statically-linked libraries will be created.
+The user only needs this single file.
 
 The hookspath will pull in custom hooks (e.g., hook-sklearn.py).
 
 To use:
-`pyinstaller --clean onedir.spec`
+`pyinstaller --clean onefile.spec`
 """
 
 block_cipher = None
@@ -28,18 +29,14 @@ pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz,
           a.scripts,
+          a.binaries,
+          a.zipfiles,
+          a.datas,
           [],
-          exclude_binaries=True,
           name='CFARS_SS_Phase1_Analysis',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
+          runtime_tmpdir=None,
           console=True )
-coll = COLLECT(exe,
-               a.binaries,
-               a.zipfiles,
-               a.datas,
-               strip=False,
-               upx=True,
-               name='CFARS_SS_Phase1_Analysis')
